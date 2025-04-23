@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceRESTfulAPI", "ECommerceRESTfulAPI\ECommerceRESTfulAPI.csproj", "{E909208A-657C-4B0C-830D-93E75A47C98E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ECommerceRESTfulAPI", "ECommerceRESTfulAPI", "{AC9DE3C2-0D45-4FBC-908C-C3A31D15510C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E909208A-657C-4B0C-830D-93E75A47C98E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E909208A-657C-4B0C-830D-93E75A47C98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E909208A-657C-4B0C-830D-93E75A47C98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E909208A-657C-4B0C-830D-93E75A47C98E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E909208A-657C-4B0C-830D-93E75A47C98E} = {AC9DE3C2-0D45-4FBC-908C-C3A31D15510C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {581FF166-6F86-41DB-9830-CEB8A843B75E}
+	EndGlobalSection
+EndGlobal
