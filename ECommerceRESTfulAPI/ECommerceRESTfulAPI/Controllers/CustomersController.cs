@@ -1,10 +1,13 @@
 ﻿using ECommerceRESTfulAPI.DTOs.Customer;
+using ECommerceRESTfulAPI.Helpers;
 using EntityFrameworkCore.MySQL.Data;
 using EntityFrameworkCore.MySQL.DTOs;
 using EntityFrameworkCore.MySQL.Models;
 using EntityFrameworkCore.MySQL.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Numerics;
+using Xunit.Sdk;
 
 namespace EntityFrameworkCore.MySQL.Controllers
 {
@@ -13,6 +16,8 @@ namespace EntityFrameworkCore.MySQL.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
+
+        
 
         public CustomersController(AppDbContext appDbContext)
         {
@@ -23,11 +28,16 @@ namespace EntityFrameworkCore.MySQL.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCustomer(CustomerCreateDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var customer = new Customer
             {
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                Email = dto.Email,
+                FirstName = Utility.NormalizeWhitespace(dto.FirstName),
+                LastName = Utility.NormalizeWhitespace(dto.LastName),
+                Email = Utility.NormalizeWhitespace(dto.Email),
                 Phone = dto.Phone
             };
 
@@ -35,6 +45,7 @@ namespace EntityFrameworkCore.MySQL.Controllers
             await _appDbContext.SaveChangesAsync();
             return Ok(customer);
         }
+
 
         // GET: API/Categories
         [HttpGet]
@@ -95,14 +106,23 @@ namespace EntityFrameworkCore.MySQL.Controllers
             if (customer == null)
                 return NotFound("Customer not found.");
 
-            customer.FirstName = dto.FirstName;
-            customer.LastName = dto.LastName;
-            customer.Email = dto.Email;
+            var emailExists = await _appDbContext.Customers
+                .AnyAsync(c => c.Email.ToLower() == dto.Email.ToLower() && c.CustomerId != id);
+
+            if (emailExists)
+            {
+                return Conflict("Another customer with this email already exists.");
+            }
+
+            customer.FirstName = Utility.NormalizeWhitespace(dto.FirstName);
+            customer.LastName = Utility.NormalizeWhitespace(dto.LastName);
+            customer.Email = Utility.NormalizeWhitespace(dto.Email);
             customer.Phone = dto.Phone;
 
             await _appDbContext.SaveChangesAsync();
             return Ok(customer);
         }
+
 
         // DELETE: API/Categories/{id}
         [HttpDelete("{id}")]

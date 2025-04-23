@@ -1,4 +1,5 @@
 ﻿using ECommerceRESTfulAPI.DTOs.Category;
+using ECommerceRESTfulAPI.Helpers;
 using EntityFrameworkCore.MySQL.Data;
 using EntityFrameworkCore.MySQL.DTOs;
 using EntityFrameworkCore.MySQL.Models;
@@ -25,8 +26,8 @@ namespace EntityFrameworkCore.MySQL.Controllers
         {
             var category = new Category
             {
-                Name = dto.Name,
-                Description = dto.Description
+                Name = Utility.NormalizeWhitespace(dto.Name),
+                Description = Utility.NormalizeWhitespace(dto.Description),
             };
 
             _appDbContext.Categories.Add(category);
@@ -93,8 +94,8 @@ namespace EntityFrameworkCore.MySQL.Controllers
             if (category == null)
                 return NotFound("Category not found.");
 
-            category.Name = dto.Name;
-            category.Description = dto.Description;
+            category.Name = Utility.NormalizeWhitespace(dto.Name);
+            category.Description = Utility.NormalizeWhitespace(dto.Description);
 
             await _appDbContext.SaveChangesAsync();
             return Ok(category);

@@ -21,6 +21,13 @@ namespace EntityFrameworkCore.MySQL.Data
             modelBuilder.Entity<Order>()
                 .Property(o => o.OrderDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            modelBuilder.Entity<Customer>()
+                .HasIndex(c => c.Email)
+                .IsUnique();
+                
+
+
         }
     }
 }

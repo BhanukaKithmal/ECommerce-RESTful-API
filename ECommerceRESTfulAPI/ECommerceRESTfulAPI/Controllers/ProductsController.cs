@@ -1,5 +1,6 @@
 ﻿using ECommerceRESTfulAPI.DTOs.Product;
 using ECommerceRESTfulAPI.Enum;
+using ECommerceRESTfulAPI.Helpers;
 using EntityFrameworkCore.MySQL.Data;
 using EntityFrameworkCore.MySQL.DTOs;
 using EntityFrameworkCore.MySQL.Models;
@@ -33,8 +34,8 @@ namespace EntityFrameworkCore.MySQL.Controllers
             // Create the product entity from the DTO
             var product = new Product
             {
-                Name = dto.Name,
-                Description = dto.Description,
+                Name = Utility.NormalizeWhitespace(dto.Name),
+                Description = Utility.NormalizeWhitespace(dto.Description),
                 Price = dto.Price,
                 Stock = dto.Stock,
                 Category = dto.Category  // Use the enum value for Category
@@ -120,8 +121,8 @@ namespace EntityFrameworkCore.MySQL.Controllers
             }
 
             // Update fields from the DTO
-            existingProduct.Name = dto.Name;
-            existingProduct.Description = dto.Description;
+            existingProduct.Name = Utility.NormalizeWhitespace(dto.Name);
+            existingProduct.Description = Utility.NormalizeWhitespace(dto.Description);
             existingProduct.Price = dto.Price;
             existingProduct.Stock = dto.Stock;
             existingProduct.Category = dto.Category;
