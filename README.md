@@ -41,7 +41,7 @@ This project is a RESTful API designed for managing an e-commerce platform. It p
 - **ORM**: Entity Framework Core (Code First)
 - **Database**: MySQL
 - **Testing**: Unit testing libraries (e.g., xUnit, Moq)
-- **API Testing**: Postman
+- **API Testing**: Postman, Swagger
 - **Version Control**: Git and GitHub
 
 ---
@@ -89,7 +89,7 @@ This project is a RESTful API designed for managing an e-commerce platform. It p
 ## Usage
 
 1. Start the API server by running the application.
-2. Use tools like [Postman](https://www.postman.com/) or [cURL](https://curl.se/) to interact with the API.
+2. Use tools like [Postman](https://www.postman.com/) to interact with the API.
 3. Navigate to `https://localhost:{port}/swagger` (default port is 5001) to access the Swagger UI for testing endpoints.
 
 ---
